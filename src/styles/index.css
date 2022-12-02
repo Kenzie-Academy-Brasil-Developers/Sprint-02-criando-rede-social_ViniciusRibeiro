@@ -295,7 +295,7 @@
   width: 25px;
   height: 25px;
 
-  background-image: url("/src/assets/img/curtir.svg"); 
+  background-image: url("./../assets/img/curtir.svg"); 
 
   background-repeat: no-repeat;
 }
@@ -306,7 +306,7 @@
   width: 25px;
   height: 25px;
 
-  background-image: url("/src/assets/img/curtiu.svg"); 
+  background-image: url("./../assets/img/curtiu.svg"); 
   background-repeat: no-repeat;
 }
 
