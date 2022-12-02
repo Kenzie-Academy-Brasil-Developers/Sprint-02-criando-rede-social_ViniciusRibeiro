@@ -3,13 +3,13 @@ const users = [
   {
     id: 1,
     user: "Samuel Leão",
-    stack: "Front end Engineer",
+    stack: "Front end Enginer",
     img: "./src/assets/img/user1.svg",
   },
   {
     id: 2,
     user: "Samuel Persuhn",
-    stack: "Front end Engineer",
+    stack: "Front end Enginer",
     img: "./src/assets/img/user2.svg",
   },
   {
@@ -21,7 +21,7 @@ const users = [
   {
     id: 4,
     user: "Carla Maria",
-    stack: "Back end Engineer",
+    stack: "Back end Enginer",
     img: "./src/assets/img/user4.svg",
   },
   {
@@ -33,11 +33,13 @@ const users = [
   {
     id: 6,
     user: "Filipe Gutierry",
+    stack: "Back end Enginer",
     img: "./src/assets/img/user7.svg",
   },
   {
     id: 7,
     user: "Samuel Persuhn",
+    stack: "Front end Enginer",
     img: "./src/assets/img/user6.svg",
   },
 ];
