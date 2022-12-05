@@ -41,17 +41,16 @@ function following(b) {
       b.innerText = "Seguindo";
       b.classList = "button__following";
     } else {
-      b.innerText = "Seguir"
-      b.classList = "button__follow"
+      b.innerText = "Seguir";
+      b.classList = "button__follow";
     }
   });
 }
 
 const section_post = document.querySelector(".section__posts");
 
-function addPostusers(array) {
+function createPost(array) {
   let array_ = filterPoster(array);
-
   for (let i = 0; i < array_.length; i++) {
     const article_post = document.createElement("article");
     article_post.classList.add("article__post");
@@ -115,6 +114,103 @@ function addPostusers(array) {
   }
 }
 
+//addPost(myPosts);
+
+function addPostusers(array) {
+  //addPost();
+  addMyPost(myPosts)
+  createPost(array);
+}
+
+function addMyPost(array) {
+  const button_post = document.querySelector(".button__pub");
+
+  const titleInput = document.querySelector(".title");
+
+  const descriptionInput = document.querySelector("#description");
+
+  let contId = 4;
+
+  button_post.addEventListener("click", (e) => {
+    let objPost = {};
+
+    objPost.id_post = contId;
+    objPost.user = 1;
+    objPost.title = titleInput.value;
+    objPost.text = descriptionInput.value;
+
+    array.push(objPost);
+
+    console.log(array);
+
+    for (let i = 0; i < array.length; i++){
+      
+    const article_post = document.createElement("article");
+    article_post.classList.add("article__post");
+
+    const post_user = document.createElement("div");
+    post_user.classList.add("post__user");
+
+    const img = document.createElement("img");
+    img.classList.add("img__icon");
+    img.src = users[0].img;
+
+    const user_detals = document.createElement("div");
+    user_detals.classList.add("user__detals");
+
+    const h3 = document.createElement("h3");
+    h3.innerText = users[0].user;
+
+    const p = document.createElement("p");
+    p.innerText = users[0].stack;
+
+    user_detals.append(h3, p);
+
+    post_user.append(img, user_detals);
+
+    const h2 = document.createElement("h2");
+    h2.innerText = array[i].title;
+
+    const p_description = document.createElement("p");
+    p_description.innerText = array[i].text;
+
+    const button_andLike = document.createElement("div");
+    button_andLike.classList.add("button__andLike");
+
+    const button = document.createElement("button");
+    button.classList.add("button__open--article");
+    button.id = contId;
+    button.innerText = "Abrir post";
+    contId++;
+
+    const div_like = document.createElement("div");
+    div_like.classList.add("div__like");
+
+    const img_like = document.createElement("span");
+    img_like.classList.add("like");
+
+    let cont_ = 0;
+
+    const cont = document.createElement("span");
+    cont.innerText = cont_;
+
+    likeClick(img_like, cont_, cont);
+
+    cont.value;
+
+    div_like.append(img_like, cont);
+
+    button_andLike.append(button, div_like);
+
+    article_post.append(post_user, h2, p_description, button_andLike);
+
+    section_post.appendChild(article_post);
+    };
+
+    modalOpen(myPosts)
+  });
+}
+
 addPostusers(posts);
 
 function likeClick(b, c_, c) {
@@ -159,15 +255,15 @@ function filterPoster(array) {
 
 addSugestUser(sugestUsers);
 
-function modalOpen() {
+function modalOpen(array) {
   const button_open_article = document.querySelectorAll(
     ".button__open--article"
   );
 
   for (let i = 0; i < button_open_article.length; i++) {
     button_open_article[i].addEventListener("click", (e) => {
-      for (let j = 0; j < posts.length; j++) {
-        if (button_open_article[i].id == posts[j].id_post) {
+      for (let j = 0; j < array.length; j++) {
+        if (button_open_article[i].id == array[j].id_post) {
           const modal = document.createElement("div");
           modal.classList.add("modal");
           const modal_container = document.createElement("div");
@@ -183,7 +279,7 @@ function modalOpen() {
           const p = document.createElement("p");
 
           for (let v = 0; v < users.length; v++) {
-            if (users[v].id === posts[j].user) {
+            if (users[v].id === array[j].user) {
               img.src = users[v].img;
               h3.innerText = users[v].user;
               p.innerText = users[v].stack;
@@ -203,15 +299,17 @@ function modalOpen() {
           modal_div.append(post_user, span);
 
           const h2 = document.createElement("h2");
-          h2.innerText = posts[j].title;
+          h2.innerText = array[j].title;
           const p_description = document.createElement("p");
-          p_description.innerText = posts[j].text;
+          p_description.innerText = array[j].text;
 
           modal_container.append(modal_div, h2, p_description);
 
           modal.appendChild(modal_container);
 
           main.appendChild(modal);
+
+        
 
           return main;
         }
@@ -220,4 +318,6 @@ function modalOpen() {
   }
 }
 
-modalOpen();
+modalOpen(posts);
+
+console.log(myPosts)
