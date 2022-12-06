@@ -36,7 +36,7 @@ function addSugestUser(array) {
 }
 
 function following(b) {
-  b.addEventListener("click", (e) => {
+  b.addEventListener("click", () => {
     if (b.classList.value == "button__follow") {
       b.innerText = "Seguindo";
       b.classList = "button__following";
@@ -50,6 +50,7 @@ function following(b) {
 const section_post = document.querySelector(".section__posts");
 
 function createPost(array) {
+  section_post.innerHTML = "";
   let array_ = filterPoster(array);
   for (let i = 0; i < array_.length; i++) {
     const article_post = document.createElement("article");
@@ -114,107 +115,45 @@ function createPost(array) {
   }
 }
 
-//addPost(myPosts);
-
 function addPostusers(array) {
-  //addPost();
-  addMyPost(myPosts)
+  addMyPost();
   createPost(array);
 }
 
-function addMyPost(array) {
+function addMyPost() {
   const button_post = document.querySelector(".button__pub");
 
   const titleInput = document.querySelector(".title");
 
   const descriptionInput = document.querySelector("#description");
 
-  let contId = 4;
-
-  button_post.addEventListener("click", (e) => {
+  button_post.addEventListener("click", () => {
     let objPost = {};
 
-    objPost.id_post = contId;
+    objPost.id_post = 1;
     objPost.user = 1;
     objPost.title = titleInput.value;
     objPost.text = descriptionInput.value;
 
-    array.push(objPost);
+    posts.unshift(objPost);
 
-    console.log(array);
+    for (let i = 1; i < posts.length; i++) {
+      posts[i].id_post = posts[i].id_post + 1;
+    }
 
-    for (let i = 0; i < array.length; i++){
-      
-    const article_post = document.createElement("article");
-    article_post.classList.add("article__post");
+    titleInput.value = "";
+    descriptionInput.value = "";
 
-    const post_user = document.createElement("div");
-    post_user.classList.add("post__user");
+    createPost(posts);
 
-    const img = document.createElement("img");
-    img.classList.add("img__icon");
-    img.src = users[0].img;
-
-    const user_detals = document.createElement("div");
-    user_detals.classList.add("user__detals");
-
-    const h3 = document.createElement("h3");
-    h3.innerText = users[0].user;
-
-    const p = document.createElement("p");
-    p.innerText = users[0].stack;
-
-    user_detals.append(h3, p);
-
-    post_user.append(img, user_detals);
-
-    const h2 = document.createElement("h2");
-    h2.innerText = array[i].title;
-
-    const p_description = document.createElement("p");
-    p_description.innerText = array[i].text;
-
-    const button_andLike = document.createElement("div");
-    button_andLike.classList.add("button__andLike");
-
-    const button = document.createElement("button");
-    button.classList.add("button__open--article");
-    button.id = contId;
-    button.innerText = "Abrir post";
-    contId++;
-
-    const div_like = document.createElement("div");
-    div_like.classList.add("div__like");
-
-    const img_like = document.createElement("span");
-    img_like.classList.add("like");
-
-    let cont_ = 0;
-
-    const cont = document.createElement("span");
-    cont.innerText = cont_;
-
-    likeClick(img_like, cont_, cont);
-
-    cont.value;
-
-    div_like.append(img_like, cont);
-
-    button_andLike.append(button, div_like);
-
-    article_post.append(post_user, h2, p_description, button_andLike);
-
-    section_post.appendChild(article_post);
-    };
-
-    modalOpen(myPosts)
+    modalOpen(posts);
   });
 }
 
 addPostusers(posts);
 
 function likeClick(b, c_, c) {
-  b.addEventListener("click", (e) => {
+  b.addEventListener("click", () => {
     if (b.classList.value === "like") {
       b.classList = "like--like";
       c_ += 1;
@@ -261,7 +200,7 @@ function modalOpen(array) {
   );
 
   for (let i = 0; i < button_open_article.length; i++) {
-    button_open_article[i].addEventListener("click", (e) => {
+    button_open_article[i].addEventListener("click", () => {
       for (let j = 0; j < array.length; j++) {
         if (button_open_article[i].id == array[j].id_post) {
           const modal = document.createElement("div");
@@ -290,7 +229,7 @@ function modalOpen(array) {
           span.innerText = "X";
           span.classList.add("button__close");
 
-          span.addEventListener("click", (e) => {
+          span.addEventListener("click", () => {
             modal.remove();
           });
 
@@ -309,8 +248,6 @@ function modalOpen(array) {
 
           main.appendChild(modal);
 
-        
-
           return main;
         }
       }
@@ -319,5 +256,3 @@ function modalOpen(array) {
 }
 
 modalOpen(posts);
-
-console.log(myPosts)

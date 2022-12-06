@@ -1,5 +1,5 @@
 //Posts dos usuários
-const posts = [
+let posts = [
   {
     id_post: 1, //id único de cada post
     user: 2, //id do usuário que fez o post, você pode acessa-lo no array users
