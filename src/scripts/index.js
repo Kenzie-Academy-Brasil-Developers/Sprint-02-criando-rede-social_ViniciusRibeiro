@@ -1,5 +1,6 @@
 const sugest_div = document.querySelector(".sugest__div");
 const main = document.querySelector(".main__container");
+const perfils = document.querySelector(".perfils")
 
 function addSugestUser(array) {
   let array_ = filter(array);
@@ -31,7 +32,7 @@ function addSugestUser(array) {
 
     sugest_post_user.append(img_icon, sugest_user_detals, button_follow);
 
-    sugest_div.appendChild(sugest_post_user);
+    perfils.appendChild(sugest_post_user);
   }
 }
 

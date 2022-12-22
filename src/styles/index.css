@@ -163,6 +163,14 @@
   font-weight: bold;
 }
 
+.perfils {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 30px;
+}
+
 .sugest__post__user {
   display: flex;
 
@@ -406,15 +414,38 @@
     border-top: solid 2px var(--gray_3);
     border-bottom: solid 2px var(--gray_3);
   }
-   .sugest__post__user {
+  .perfils {
+    flex-direction: row;
 
-    width: 100%;
+    overflow-x: scroll;
+
+    flex-wrap: nowrap;
+
+    position: relative;
+  }
+  .sugest__post__user {
+    margin-bottom: 50px;
+  }
+   .sugest__post__user > div {
+    width: 200px;
   } 
   .button__follow {
     position: absolute;
+
+    height: 30px;
+    width: 110px;
+
+    top: 60px;
+    left: 0px;
   }
   .button__following {
     position: absolute;
+
+    height: 30px;
+    width: 110px;
+
+    top: 60px;
+    left: 0px;
   }
 }
 
